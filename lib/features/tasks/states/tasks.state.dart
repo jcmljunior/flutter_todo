@@ -18,9 +18,8 @@ sealed class TasksState {
   });
 }
 
-// Inicialização do estado de tarefas.
-class Tasks extends TasksState {
-  const Tasks({
+class TasksInitial extends TasksState {
+  const TasksInitial({
     bool? isLoading,
     List<TaskModel>? tasks,
   }) : super(
@@ -33,7 +32,7 @@ class Tasks extends TasksState {
     bool? isLoading,
     List<TaskModel>? tasks,
   }) =>
-      Tasks(
+      TasksInitial(
         isLoading: isLoading ?? this.isLoading,
         tasks: tasks ?? this.tasks,
       );

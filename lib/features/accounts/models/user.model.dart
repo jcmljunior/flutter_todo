@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import '../entities/user.entity.dart';
 
 class UserSchema {
-  static const tableName = 'users';
   static const id = 'id';
   static const name = 'name';
   static const email = 'email';
@@ -13,6 +12,7 @@ class UserSchema {
   static const biography = 'biography';
   static const birthDate = 'birth_date';
   static const createdAt = 'created_at';
+  static const tableName = 'users';
   static const columns = [
     id,
     name,
@@ -33,7 +33,7 @@ class UserSchema {
     gender: 'INTEGER NOT NULL',
     biography: 'TEXT NOT NULL',
     birthDate: 'TEXT NOT NULL',
-    createdAt: 'TEXT NOT NULL',
+    createdAt: 'DATETIME NOT NULL',
   };
 
   static final createTable =
@@ -54,8 +54,17 @@ class UserModel extends UserEntity with EquatableMixin {
   });
 
   @override
-  List<Object?> get props =>
-      [id, name, email, password, age, gender, biography, birthDate, createdAt];
+  List<Object?> get props => [
+        id,
+        name,
+        email,
+        password,
+        age,
+        gender,
+        biography,
+        birthDate,
+        createdAt,
+      ];
 
   UserModel copyWith({
     int? id,

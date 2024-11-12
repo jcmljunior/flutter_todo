@@ -1,66 +1,52 @@
-import 'package:flutter_todo/features/accounts/models/user.model.dart';
-import 'package:flutter_todo/features/accounts/stores/account.store.dart';
 import 'package:test/test.dart';
 
+import 'package:flutter_todo/features/accounts/models/user.model.dart';
+import 'package:flutter_todo/features/accounts/stores/account.store.dart';
+
+import '../mocks/mock_user.dart';
+
 void main() {
-  final user1 = UserModel(
-    id: 0,
-    name: 'Amanda',
-    email: 'amanda@gmail.com',
-    password: '123',
-    age: 24,
-    gender: 'Female',
-    biography: 'I am a developer',
-    birthDate: DateTime.now().subtract(const Duration(days: 360 * 29)),
-    createdAt: DateTime.now(),
-  );
-  final user2 = UserModel(
-    id: 1,
-    name: 'Ana Clara',
-    email: 'anaclara@gmailcom',
-    password: '123',
-    age: 18,
-    gender: 'Female',
-    biography: 'I am a developer',
-    birthDate: DateTime.now().subtract(const Duration(days: 360 * 24)),
-    createdAt: DateTime.now(),
-  );
+  final List<UserModel> users = MockUser.generateUsers();
 
-  group('Inicio do teste: AccountStore', () {
-    test('Método: addUser', () {
-      final accountStore = AccountStore();
+  test('AccountStore deve iniciar com lista de contas vazia', () {
+    final accountStore = AccountStore();
+    expect(accountStore.accounts, isEmpty,
+        reason: 'A lista de contas deve estar vazia');
+  });
 
-      accountStore.addUser(user1);
+  test('addUser deve adicionar um usuário à lista de contas', () {
+    final accountStore = AccountStore();
 
-      expect(accountStore.accounts.contains(user1), true);
-    });
+    accountStore.addUser(users.first);
 
-    test('Método: addUsers', () {
-      final accountStore = AccountStore();
+    expect(accountStore.accounts, contains(users.first),
+        reason: 'A lista de contas deve conter [users.first]');
+    expect(accountStore.accounts.length, equals(1),
+        reason: 'O tamanho da lista deve ser 1');
+  });
 
-      accountStore.addUsers([user1, user2]);
+  test('removeUser deve remover um usuário da lista de contas', () {
+    final accountStore = AccountStore();
 
-      expect(accountStore.accounts.contains(user1), true);
-      expect(accountStore.accounts.contains(user2), true);
-    });
+    accountStore.addUser(users.first);
+    accountStore.removeUser(users.first);
 
-    test('Método: removeUser', () {
-      final accountStore = AccountStore();
+    expect(accountStore.accounts, isNot(contains(users.first)),
+        reason: 'A lista de contas não deve conter [users.first]');
+    expect(accountStore.accounts.length, equals(0),
+        reason: 'O tamanho da lista deve ser 0');
+  });
 
-      accountStore.addUser(user1);
-      accountStore.removeUser(user1);
+  test('users setter deve atualizar a lista completa de contas', () {
+    final accountStore = AccountStore();
 
-      expect(accountStore.accounts.contains(user1), false);
-    });
+    accountStore.users = [users.elementAt(0), users.elementAt(1)];
 
-    test('Método: removeUsers', () {
-      final accountStore = AccountStore();
-
-      accountStore.addUsers([user1, user2]);
-      accountStore.removeUsers([user1, user2]);
-
-      expect(accountStore.accounts.contains(user1), false);
-      expect(accountStore.accounts.contains(user2), false);
-    });
+    expect(accountStore.accounts,
+        containsAll([users.elementAt(0), users.elementAt(1)]),
+        reason:
+            'A lista de contas deve conter [users.elementAt(0), users.elementAt(1)]');
+    expect(accountStore.accounts.length, equals(2),
+        reason: 'O tamanho da lista deve ser 2');
   });
 }

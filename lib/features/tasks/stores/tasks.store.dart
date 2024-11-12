@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 
-import '../../value_notifier/extensions/value_notifier.extension.dart';
+import '../../value_notifier/extensions/value_notifier_extension.dart';
 import '../models/task.model.dart';
 import '../states/tasks.state.dart';
 
 class TasksStore extends ValueNotifier<TasksState> {
-  TasksStore() : super(const Tasks());
+  TasksStore(super.value);
 
   bool get isLoading => state.isLoading!;
 
@@ -92,37 +92,4 @@ class TasksStore extends ValueNotifier<TasksState> {
       isLoading = false;
     }
   }
-
-  // List<TaskModel> sortTasksByCompletion(List<TaskModel> value) {
-  //   return value.toList()
-  //     ..sort((TaskModel a, TaskModel b) {
-  //       if (a.isCompleted! && !b.isCompleted!) {
-  //         return 1;
-  //       } else if (!a.isCompleted! && b.isCompleted!) {
-  //         return -1;
-  //       }
-  //
-  //       return 0;
-  //     });
-  // }
-
-  // List<TaskModel> sortTasksByFavorite(List<TaskModel> value) {
-  //   return value.toList()
-  //     ..sort((TaskModel a, TaskModel b) {
-  //       if (a.isFavorite! && !b.isFavorite!) {
-  //         return 1;
-  //       } else if (!a.isFavorite! && b.isFavorite!) {
-  //         return -1;
-  //       } else {
-  //         return 0;
-  //       }
-  //     });
-  // }
-  //
-  // List<TaskModel> sortTasksByDate(List<TaskModel> value) {
-  //   return value.toList()
-  //     ..sort((TaskModel a, TaskModel b) {
-  //       return a.createdAt!.compareTo(b.createdAt!);
-  //     });
-  // }
 }

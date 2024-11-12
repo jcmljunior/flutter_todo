@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../../value_notifier/extensions/value_notifier.extension.dart';
+import '../../value_notifier/extensions/value_notifier_extension.dart';
 import '../models/user.model.dart';
 import '../states/account.state.dart';
 
@@ -26,27 +26,10 @@ class AccountStore extends ValueNotifier<AccountsState> {
     );
   }
 
-  void addUsers(List<UserModel> users) {
-    state = state.copyWith(
-      accounts: [
-        ...accounts,
-        ...users,
-      ],
-    );
-  }
-
   void removeUser(UserModel user) {
     state = state.copyWith(
       accounts: [
         ...accounts.where((element) => element.id != user.id),
-      ],
-    );
-  }
-
-  void removeUsers(List<UserModel> users) {
-    state = state.copyWith(
-      accounts: [
-        ...accounts.where((element) => !users.contains(element)),
       ],
     );
   }
