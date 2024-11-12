@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 import '../../value_notifier/extensions/value_notifier_extension.dart';
-import '../models/task.model.dart';
-import '../states/tasks.state.dart';
+import '../models/task_model.dart';
+import '../states/tasks_state.dart';
 
 class TasksStore extends ValueNotifier<TasksState> {
   TasksStore(super.value);
