@@ -1,4 +1,4 @@
-import 'package:flutter_todo/features/tasks/models/task.model.dart';
+import 'package:flutter_todo/features/tasks/models/task_model.dart';
 
 import '../../mock_data/mock.data.dart';
 
