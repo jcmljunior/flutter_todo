@@ -1,8 +1,8 @@
 import 'package:test/test.dart';
 
-import 'package:flutter_todo/features/tasks/models/task.model.dart';
-import 'package:flutter_todo/features/tasks/states/tasks.state.dart';
-import 'package:flutter_todo/features/tasks/stores/tasks.store.dart';
+import 'package:flutter_todo/features/tasks/models/task_model.dart';
+import 'package:flutter_todo/features/tasks/states/tasks_state.dart';
+import 'package:flutter_todo/features/tasks/stores/tasks_store.dart';
 
 import '../mocks/mock_task.dart';
 
