@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' show immutable;
 
-import '../models/task.model.dart';
+import '../models/task_model.dart';
 
 @immutable
 sealed class TasksState {
