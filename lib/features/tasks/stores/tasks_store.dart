@@ -17,6 +17,8 @@ class TasksStore extends ValueNotifier<TasksState> {
     );
   }
 
+  List<TaskModel> get tasks => state.tasks!;
+
   set tasks(List<TaskModel> value) {
     if (state.tasks == value) return;
 
@@ -25,7 +27,15 @@ class TasksStore extends ValueNotifier<TasksState> {
     );
   }
 
-  List<TaskModel> get tasks => state.tasks!;
+  int get currentDayOfWeek => state.currentDayOfWeek!;
+
+  set currentDayOfWeek(int value) {
+    if (state.currentDayOfWeek == value) return;
+
+    state = state.copyWith(
+      currentDayOfWeek: value,
+    );
+  }
 
   List<TaskModel> get pendingTasks =>
       tasks.where((task) => !task.isCompleted!).toList();
@@ -87,6 +97,18 @@ class TasksStore extends ValueNotifier<TasksState> {
               ? task.copyWith(isFavorite: !task.isFavorite!)
               : t),
         ],
+      );
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  Future<void> changeCurrentDayOfWeekHandler(int value) async {
+    isLoading = true;
+
+    try {
+      state = state.copyWith(
+        currentDayOfWeek: value,
       );
     } finally {
       isLoading = false;

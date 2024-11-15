@@ -10,13 +10,21 @@ void main() {
   final List<TaskModel> tasks = MockTasks.generateTasks();
 
   test('TasksStore deve iniciar com uma lista de tarefas vazia', () {
-    final tasksStore = TasksStore(const TasksInitial());
+    final tasksStore = TasksStore(
+      TasksInitial(
+        currentDayOfWeek: DateTime.now().day,
+      ),
+    );
     expect(tasksStore.tasks, isEmpty,
         reason: 'A lista de tarefas deve estar vazia');
   });
 
   test('addTask deve adicionar uma tarefa à lista de tarefas', () {
-    final tasksStore = TasksStore(const TasksInitial());
+    final tasksStore = TasksStore(
+      TasksInitial(
+        currentDayOfWeek: DateTime.now().day,
+      ),
+    );
 
     tasksStore.addTask(tasks.first);
 
@@ -27,7 +35,11 @@ void main() {
   });
 
   test('removeTask deve remover uma tarefa da lista de tarefas', () {
-    final tasksStore = TasksStore(const TasksInitial());
+    final tasksStore = TasksStore(
+      TasksInitial(
+        currentDayOfWeek: DateTime.now().day,
+      ),
+    );
 
     tasksStore.addTask(tasks.first);
     tasksStore.removeTask(tasks.first);
@@ -40,7 +52,11 @@ void main() {
 
   test('toggleTaskCompletion deve alterar o status de conclusão de uma tarefa',
       () {
-    final tasksStore = TasksStore(const TasksInitial());
+    final tasksStore = TasksStore(
+      TasksInitial(
+        currentDayOfWeek: DateTime.now().day,
+      ),
+    );
 
     tasksStore.addTask(tasks.first);
     tasksStore.toggleTaskCompletion(tasks.first);
@@ -52,7 +68,11 @@ void main() {
 
   test('toggleTaskFavorite deve alterar o status de favorito de uma tarefa',
       () {
-    final tasksStore = TasksStore(const TasksInitial());
+    final tasksStore = TasksStore(
+      TasksInitial(
+        currentDayOfWeek: DateTime.now().day,
+      ),
+    );
 
     tasksStore.addTask(tasks.first);
     tasksStore.toggleTaskFavorite(tasks.first);
@@ -62,11 +82,42 @@ void main() {
   });
 
   test('tasks setter deve atualizar a lista de tarefas', () {
-    final tasksStore = TasksStore(const TasksInitial());
+    final tasksStore = TasksStore(
+      TasksInitial(
+        currentDayOfWeek: DateTime.now().day,
+      ),
+    );
 
     tasksStore.tasks = tasks;
 
     expect(tasksStore.tasks, equals(tasks),
         reason: 'A lista de tarefas deve ser atualizada');
+  });
+
+  test('currentDayOfWeek setter deve atualizar o dia da semana atual', () {
+    final tasksStore = TasksStore(
+      TasksInitial(
+        currentDayOfWeek: DateTime.now().day,
+      ),
+    );
+
+    tasksStore.currentDayOfWeek = DateTime.now().day;
+
+    expect(tasksStore.currentDayOfWeek, equals(DateTime.now().day),
+        reason: 'O dia da semana atual deve ser atualizado');
+  });
+
+  test('changeCurrentDayOfWeekHandler deve atualizar o dia da semana atual',
+      () {
+    final tasksStore = TasksStore(
+      TasksInitial(
+        currentDayOfWeek: DateTime.now().subtract(const Duration(days: 1)).day,
+      ),
+    );
+
+    tasksStore.changeCurrentDayOfWeekHandler(DateTime.now().day);
+
+    expect(tasksStore.currentDayOfWeek, equals(DateTime.now().day),
+        reason: 'O dia da semana atual deve ser atualizado');
   });
 }
