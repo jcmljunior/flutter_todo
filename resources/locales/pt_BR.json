@@ -1,1 +1,8 @@
-{}
+{
+    "choose_language.title": "Escolha o idioma",
+    "choose_language.description": "Por favor, escolha o idioma de sua preferência para continuar.",
+    "choose_language.device_language": "Linguagem do dispositivo.",
+    "choose_language.pt_BR": "Português do Brasil",
+    "choose_language.en_US": "Inglês",
+    "choose_language.es_ES": "Espanhol"
+}
