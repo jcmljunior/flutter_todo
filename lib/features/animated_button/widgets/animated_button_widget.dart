@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/animated_button_constant.dart';
 import '../states/animated_button_state.dart';
-import '../stores/floating_action_button_store.dart';
+import '../stores/animated_button_store.dart';
 
 @immutable
 class AnimatedButtonWidget extends StatefulWidget {
@@ -23,7 +23,7 @@ class AnimatedButtonWidget extends StatefulWidget {
 
 class AnimatedButtonWidgetState extends State<AnimatedButtonWidget>
     with SingleTickerProviderStateMixin {
-  late final FloatingActionButtonStore _store;
+  late final AnimatedButtonStore _store;
   late final AnimationController _controller;
 
   @override
@@ -54,7 +54,7 @@ class AnimatedButtonWidgetState extends State<AnimatedButtonWidget>
   }
 
   void setStore() {
-    _store = FloatingActionButtonStore(
+    _store = AnimatedButtonStore(
       const AnimatedButtonInitial(),
     );
   }
