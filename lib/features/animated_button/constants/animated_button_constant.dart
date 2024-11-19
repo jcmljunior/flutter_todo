@@ -1,3 +1,3 @@
 class AnimatedButtonConstant {
-  static const int defaultAnimationDuration = 450;
+  static const int defaultAnimationDuration = 850;
 }
