@@ -1,11 +1,12 @@
 import 'dart:ui' show Color;
+
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ColorizeVector extends ColorMapper {
+class ColorizeVectorHelper extends ColorMapper {
   final List<Color> targetColors;
   final List<Color> replacementColors;
 
-  const ColorizeVector({
+  const ColorizeVectorHelper({
     required this.targetColors,
     required this.replacementColors,
   }) : assert(targetColors.length == replacementColors.length,
