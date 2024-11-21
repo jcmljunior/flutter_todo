@@ -6,8 +6,6 @@ import '../stores/animated_button_store.dart';
 
 @immutable
 class AnimatedButtonWidget extends StatefulWidget {
-  // Solução alternativa ao uso do globalKey. Melhor performance.
-  // final GlobalKey<AnimatedButtonWidgetState> key = GlobalKey();
   final void Function(AnimatedButtonWidgetState)? onInitState;
   final Widget Function(BuildContext, AnimatedButtonWidgetState?) builder;
 
@@ -43,6 +41,10 @@ class AnimatedButtonWidgetState extends State<AnimatedButtonWidget>
     super.dispose();
   }
 
+  AnimatedButtonStore get store => _store;
+
+  AnimationController get controller => _controller;
+
   void onInitState() {
     if (widget.onInitState == null) {
       return WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -68,6 +70,10 @@ class AnimatedButtonWidgetState extends State<AnimatedButtonWidget>
   }
 
   Future<void> toggleAnimation() async {
+    _store.toggleLoading();
+
+    await Future.delayed(const Duration(milliseconds: 2000));
+
     switch (_controller.status) {
       case AnimationStatus.completed:
         await _controller.reverse();
@@ -79,34 +85,8 @@ class AnimatedButtonWidgetState extends State<AnimatedButtonWidget>
     }
 
     _store.toggleVisibility();
+    _store.toggleLoading();
   }
-
-  Widget useSlideTrasition(Widget child,
-          {Offset begin = const Offset(0, 2),
-          Offset end = const Offset(0, 0)}) =>
-      SlideTransition(
-        key: ValueKey<bool>(_controller.isCompleted),
-        position: Tween<Offset>(
-          begin: begin,
-          end: end,
-        ).animate(_controller),
-        child: child,
-      );
-
-  Widget useScaleTransition(Widget child,
-          {required Animatable<double> curve}) =>
-      ScaleTransition(
-        key: ValueKey<bool>(_controller.isCompleted),
-        scale: _controller.drive(curve),
-        child: child,
-      );
-
-  Widget useFadeTransition(Widget child, {required Animatable<double> curve}) =>
-      FadeTransition(
-        key: ValueKey<bool>(_controller.isCompleted),
-        opacity: _controller.drive(curve),
-        child: child,
-      );
 
   @override
   Widget build(BuildContext context) {
