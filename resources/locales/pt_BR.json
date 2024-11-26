@@ -1,8 +1,23 @@
 {
-    "choose_language.title": "Escolha o idioma",
     "choose_language.description": "Por favor, escolha o idioma de sua preferência para continuar.",
     "choose_language.device_language": "Linguagem do dispositivo.",
-    "choose_language.pt_BR": "Português do Brasil",
     "choose_language.en_US": "Inglês",
-    "choose_language.es_ES": "Espanhol"
+    "choose_language.es_ES": "Espanhol",
+    "choose_language.pt_BR": "Português do Brasil",
+    "choose_language.title": "Escolha o idioma",
+    "overview.choose_your_color.custom_color": "Ajustar a cor",
+    "overview.choose_your_color.description": "Por favor, escolha a cor de sua preferência para continuar.",
+    "overview.choose_your_color.title": "Escolha a sua cor",
+    "overview.planning_task.description": "Organize suas atividades de forma eficaz criando um plano detalhado para suas tarefas.",
+    "overview.planning_task.title": "Planejar tarefas",
+    "overview.skip": "Pular",
+    "overview.sync_data.description": "Compartilhe seu progresso entre dispositivos local.",
+    "overview.sync_data.title": "Sincronizar dados",
+    "overview.task_manager.description": "Adicione, edite e conclua suas tarefas facilmente.",
+    "overview.task_manager.title": "Gerenciar tarefas",
+    "tasks.add_task": "Adicionar tarefa",
+    "tasks.add_task_hint": "Digite o nome da tarefa aqui:",
+    "tasks.delete_task": "Excluir tarefa",
+    "tasks.edit_task": "Editar tarefa",
+    "tasks.task_list_empty": "Nenhuma tarefa cadastrada."
 }
