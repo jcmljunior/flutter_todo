@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../app/constants/app_constant.dart';
+import '../../overview/constants/overview_constant.dart';
 import '../../theme_manager/containers/theme_manager_container.dart';
 import '../../theme_manager/helpers/colorize_vector_helper.dart';
 import '../../translate_manager/containers/translate_manager_container.dart';
@@ -209,7 +210,7 @@ class _ChooseColorPageState extends State<ChooseColorPage>
 
   void onNavigateNextButtonPressedHandler(BuildContext context) {
     if (context.mounted) {
-      Navigator.pushReplacementNamed(context, AppConstant.defaultOverviewRoute);
+      Navigator.pushReplacementNamed(context, OverviewConstant.routeName);
     }
   }
 

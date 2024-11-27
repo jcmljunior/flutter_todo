@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../../features/tasks/pages/today_page.dart';
+import '../../features/choose_color/constants/choose_color_constant.dart';
+import '../../features/choose_color/pages/choose_color_page.dart';
+import '../../features/choose_language/constants/choose_language_constant.dart';
+import '../../features/choose_language/pages/choose_language_page.dart';
+import '../../features/overview/constants/overview_constant.dart';
+import '../../features/overview/pages/overview_page.dart';
 import '../../features/theme_manager/constants/theme_manager_constant.dart';
 import '../../features/theme_manager/containers/theme_manager_container.dart';
 import '../../features/theme_manager/mixins/theme_manager_mixin.dart';
@@ -90,9 +94,12 @@ class _AppWidgetState extends State<AppWidget> with ThemeManagerMixin {
                   textButtonTheme: ThemeManagerConstant.textButtonTheme,
                   checkboxTheme: ThemeManagerConstant.checkboxTheme,
                 ),
-                initialRoute: AppConstant.defaultInitialRoute,
+                initialRoute: ChooseLanguageConstant.routeName,
                 routes: {
-                  AppConstant.defaultInitialRoute: (_) => const TodayPage(),
+                  ChooseLanguageConstant.routeName: (_) =>
+                      const ChooseLanguagePage(),
+                  ChooseColorConstant.routeName: (_) => const ChooseColorPage(),
+                  OverviewConstant.routeName: (_) => const OverviewPage(),
                 },
               );
             },
