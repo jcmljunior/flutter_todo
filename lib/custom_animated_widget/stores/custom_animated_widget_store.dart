@@ -3,7 +3,7 @@ import '../../features/value_notifier/extensions/value_notifier_extension.dart';
 import '../states/custom_animated_widget_state.dart';
 
 class CustomAnimatedWidgetStore
-    extends ValueNotifier<CustomAnimatedWidgetState> {
+    extends ValueNotifier<CustomAnimatedWidgetStoreState> {
   CustomAnimatedWidgetStore(super.value);
 
   bool get isLoading => state.isLoading!;

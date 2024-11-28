@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../mixins/custom_animated_widget_mixin.dart';
 import '../states/custom_animated_widget_state.dart';
 import '../stores/custom_animated_widget_store.dart';
 
@@ -30,12 +31,16 @@ class CustomAnimatedWidget extends StatefulWidget {
 }
 
 class CustomAnimatedWidgetState extends State<CustomAnimatedWidget>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, CustomAnimatedWidgetMixin {
   late final CustomAnimatedWidgetStore _store;
   late final AnimationController _controller;
 
   Listenable? get listenable => widget.listenable;
 
+  @override
+  CustomAnimatedWidgetStore get store => _store;
+
+  @override
   AnimationController get controller => _controller;
 
   @override

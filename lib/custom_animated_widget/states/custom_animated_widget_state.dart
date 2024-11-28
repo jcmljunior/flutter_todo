@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart' show immutable;
 
 @immutable
-sealed class CustomAnimatedWidgetState {
+sealed class CustomAnimatedWidgetStoreState {
   final bool? isLoading;
   final bool? isVisible;
 
-  const CustomAnimatedWidgetState({
+  const CustomAnimatedWidgetStoreState({
     this.isLoading,
     this.isVisible,
   });
 
-  CustomAnimatedWidgetState copyWith({
+  CustomAnimatedWidgetStoreState copyWith({
     bool? isLoading,
     bool? isVisible,
   });
 }
 
-class CustomAnimatedWidgetInitial extends CustomAnimatedWidgetState {
+class CustomAnimatedWidgetInitial extends CustomAnimatedWidgetStoreState {
   const CustomAnimatedWidgetInitial({
     bool? isLoading,
     bool? isVisible,
@@ -26,7 +26,7 @@ class CustomAnimatedWidgetInitial extends CustomAnimatedWidgetState {
         );
 
   @override
-  CustomAnimatedWidgetState copyWith({bool? isLoading, bool? isVisible}) =>
+  CustomAnimatedWidgetStoreState copyWith({bool? isLoading, bool? isVisible}) =>
       CustomAnimatedWidgetInitial(
         isLoading: isLoading ?? this.isLoading,
         isVisible: isVisible ?? this.isVisible,
