@@ -1,8 +1,6 @@
-import 'package:test/test.dart';
-
+import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_todo/features/accounts/models/user.model.dart';
 import 'package:flutter_todo/features/accounts/stores/account.store.dart';
-
 import '../mocks/mock_user.dart';
 
 void main() {

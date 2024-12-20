@@ -1,9 +1,7 @@
-import 'package:test/test.dart';
-
+import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_todo/features/tasks/models/task_model.dart';
 import 'package:flutter_todo/features/tasks/states/tasks_state.dart';
 import 'package:flutter_todo/features/tasks/stores/tasks_store.dart';
-
 import '../mocks/mock_task.dart';
 
 void main() {

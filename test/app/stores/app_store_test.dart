@@ -1,5 +1,4 @@
-import 'package:test/test.dart';
-
+import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_todo/app/states/app_state.dart';
 import 'package:flutter_todo/app/stores/app_store.dart';
 
