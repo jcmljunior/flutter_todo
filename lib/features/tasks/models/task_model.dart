@@ -1,42 +1,9 @@
 import 'package:flutter/material.dart' show immutable;
-
-import 'package:equatable/equatable.dart';
-
 import '../entities/task.entity.dart';
-
-class TaskSchema {
-  static const id = 'id';
-  static const authorId = 'author_id';
-  static const title = 'title';
-  static const content = 'content';
-  static const isFavorite = 'is_favorite';
-  static const isCompleted = 'is_completed';
-  static const createdAt = 'created_at';
-  static const tableName = 'tasks';
-  static const columns = [
-    id,
-    authorId,
-    title,
-    content,
-    isFavorite,
-    isCompleted,
-    createdAt,
-  ];
-  static const values = {
-    id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-    authorId: 'INTEGER NOT NULL',
-    title: 'TEXT NOT NULL',
-    content: 'TEXT NOT NULL',
-    isFavorite: 'INTEGER NOT NULL',
-    isCompleted: 'INTEGER NOT NULL',
-    createdAt: 'DATETIME NOT NULL',
-  };
-  static final createTable =
-      '''CREATE TABLE IF NOT EXISTS $tableName (${values.entries.map((e) => '${e.key} ${e.value}').join(', ')})''';
-}
+import '../schemas/task.schema.dart';
 
 @immutable
-class TaskModel extends TaskEntity with EquatableMixin {
+class TaskModel extends TaskEntity {
   const TaskModel({
     super.id,
     super.authorId,
@@ -47,25 +14,14 @@ class TaskModel extends TaskEntity with EquatableMixin {
     super.createdAt,
   });
 
-  @override
-  List<Object?> get props => [
-        id,
-        authorId,
-        title,
-        content,
-        isFavorite,
-        isCompleted,
-        createdAt,
-      ];
-
   factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
         id: json[TaskSchema.id],
         authorId: json[TaskSchema.authorId],
         title: json[TaskSchema.title],
         content: json[TaskSchema.content],
-        isFavorite: json[TaskSchema.isFavorite],
-        isCompleted: json[TaskSchema.isCompleted],
-        createdAt: json[TaskSchema.createdAt],
+        isFavorite: (json[TaskSchema.isFavorite] as int) == 1 ? true : false,
+        isCompleted: (json[TaskSchema.isCompleted] as int) == 1 ? true : false,
+        createdAt: DateTime.parse(json[TaskSchema.createdAt]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -73,9 +29,9 @@ class TaskModel extends TaskEntity with EquatableMixin {
         TaskSchema.authorId: authorId,
         TaskSchema.title: title,
         TaskSchema.content: content,
-        TaskSchema.isFavorite: isFavorite,
-        TaskSchema.isCompleted: isCompleted,
-        TaskSchema.createdAt: createdAt,
+        TaskSchema.isFavorite: isFavorite == true ? 1 : 0,
+        TaskSchema.isCompleted: isCompleted == true ? 1 : 0,
+        TaskSchema.createdAt: createdAt?.toIso8601String(),
       };
 
   TaskModel copyWith({
